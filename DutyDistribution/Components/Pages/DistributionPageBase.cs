@@ -1,42 +1,23 @@
 ﻿using Microsoft.AspNetCore.Components;
-
+using Microsoft.Extensions.Logging;
 
 namespace DutyDistribution.Components.Pages;
 
 public class DistributionPageBase : ComponentBase
 {
+    public DefaultModal defaultModal;
     public int currentCount = 0;
     public void DistributeDuties()
     {
         currentCount++;
     }
-    public void AddNewDuty()
-    {
-        currentCount++;
-    }
     
-    public WeatherForecast[]? forecasts;
+    
+    public string nameTextField = "";
 
-    protected override async Task OnInitializedAsync()
+    public List<string> models = new()
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
-    }
-
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+        "Cooking",
+        "Cleaning"
+    };
 }

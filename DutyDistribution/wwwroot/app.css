@@ -11,18 +11,15 @@ a, .btn-link {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
-
-.btn-primary-add {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-    float: right;
+.input-textbox{
+    width: 100%;
 }
+
 
 .btn-primary-negative {
     color: #fff;
-    background-color: red;
-    border-color: #1861ac;
+    background-color:#FF0000 ;
+    border-color: #8B0000;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
