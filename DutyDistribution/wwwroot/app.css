@@ -12,6 +12,13 @@ a, .btn-link {
     border-color: #1861ac;
 }
 
+.btn-primary-add {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    float: right;
+}
+
 .btn-primary-negative {
     color: #fff;
     background-color: red;

@@ -1,0 +1,59 @@
+﻿@page "/"
+@inherits DistributionPageBase;
+
+<PageTitle>DistributionPage</PageTitle>
+
+<h1> Distribute duties</h1>
+<button class="btn btn-primary" @onclick="DistributeDuties">Distribute</button>
+<h2>Person 1</h2>
+<ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ul>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+<h2>Person 2</h2>
+<ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ul>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+<h1>Create duties </h1>
+<button class="btn btn-primary-add" @onclick="AddNewDuty"> +</button>
+
+@if (forecasts == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+<table class="table">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th aria-label="Temperature in Celsius">Temp. (C)</th>
+        <th aria-label="Temperature in Farenheit">Temp. (F)</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var forecast in forecasts)
+    {
+        <tr>
+            <td>@forecast.Date.ToShortDateString()</td>
+            <td>@forecast.TemperatureC</td>
+            <td>@forecast.TemperatureF</td>
+            <td>@forecast.Summary</td>
+        </tr>
+    }
+    </tbody>
+</table>
+}
+
+
+
