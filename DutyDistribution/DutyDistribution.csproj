@@ -6,4 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Components\lib\" />
+      <Folder Include="Components\tests\" />
+    </ItemGroup>
+
 </Project>

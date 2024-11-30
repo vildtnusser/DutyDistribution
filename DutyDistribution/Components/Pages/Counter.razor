@@ -1,5 +1,6 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
+@inherits CounterBase
 
 <PageTitle>Counter</PageTitle>
 
@@ -9,12 +10,4 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-
-}
+<button class="btn btn-primary-negative" @onclick="DecrementCount">Click me</button>
