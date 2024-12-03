@@ -11,22 +11,27 @@
                                                              {
                                                                  @show = !show;
                                                              })">Distribute</button>
-<h2>Person 1</h2>
-<ul>
-    @foreach(var duty in DistributeDuties(models, show).Item1)
-    {
-            <li>@duty</li>
-    }
-</ul>
 
-<hr style="width:100%;text-align:left;margin-left:0">
-<h2>Person 2</h2>
-<ul>
-    @foreach(var duty in DistributeDuties(models, show).Item2)
+@for (int k = 0; k < DistributeDuties(models, persons, show).Count; k++)
+{
+    @foreach (var duty in DistributeDuties(models, persons, show)[k])
     {
-        <li>@duty</li>
+        int l = DistributeDuties(models, persons, show)[k].IndexOf(duty);
+        {
+            if (l == 0)
+            {
+                <h2>@duty</h2>
+            }
+            else
+            {
+                <ul>
+                    <li>@duty</li>
+                </ul>
+            }
+        }
     }
-</ul>
+    <hr style="width:100%;text-align:left;margin-left:0">
+}
 
 <hr style="width:100%;text-align:left;margin-left:0">
 <h1>Duty overview</h1>
@@ -64,7 +69,41 @@
 
 </table>
 
+<hr style="width:100%;text-align:left;margin-left:0">
+<h1>Persons</h1>
 
+<h3> Add new person:</h3>
+<input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
+<button class="btn btn-primary" @onclick="@(() =>
+                                          {
+                                              if (!persons.Contains(nameTextField))
+                                              {
+                                                  persons.Add(nameTextField);
+                                              }
+
+                                              nameTextField = "";
+
+                                          })">
+    Add new person
+</button>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Deleting</th>
+    </tr>
+    @foreach(var person in persons)
+    {
+        <tr>
+            <td>@person</td>
+            <td>
+                <button class="btn-primary-negative" @onclick="() => persons.Remove(person)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
 
 
 
