@@ -73,15 +73,15 @@
 <h1>Persons</h1>
 
 <h3> Add new person:</h3>
-<input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
+<input class = "input-textbox" @bind="@nameTextFieldPerson" @oninput="(e)=> { nameTextFieldPerson = e.Value ==null? string.Empty:(string)e.Value; }" />
 <button class="btn btn-primary" @onclick="@(() =>
                                           {
-                                              if (!persons.Contains(nameTextField))
+                                              if (!persons.Contains(nameTextFieldPerson))
                                               {
-                                                  persons.Add(nameTextField);
+                                                  persons.Add(nameTextFieldPerson);
                                               }
 
-                                              nameTextField = "";
+                                              nameTextFieldPerson = "";
 
                                           })">
     Add new person
