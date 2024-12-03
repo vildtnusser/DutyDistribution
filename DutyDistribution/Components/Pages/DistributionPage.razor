@@ -1,29 +1,31 @@
 ﻿@page "/"
+@using System.ComponentModel
 @inherits DistributionPageBase;
 @rendermode InteractiveServer
-@inject ILogger<Counter> Logger
+
 
 <PageTitle>DistributionPage</PageTitle>
 
 <h1> Distribute duties</h1>
 <button class="btn btn-primary" @onclick="@(() =>
-                                          {
-                                              Logger.LogInformation(1,nameTextField);
-                                              DistributeDuties();
-                                          })">Distribute</button>
+                                                             {
+                                                                 @show = !show;
+                                                             })">Distribute</button>
 <h2>Person 1</h2>
 <ul>
-    <li>Coffee</li>
-    <li>Tea</li>
-    <li>Milk</li>
+    @foreach(var duty in DistributeDuties(models, show).Item1)
+    {
+            <li>@duty</li>
+    }
 </ul>
 
 <hr style="width:100%;text-align:left;margin-left:0">
 <h2>Person 2</h2>
 <ul>
-    <li>Coffee</li>
-    <li>Tea</li>
-    <li>Milk</li>
+    @foreach(var duty in DistributeDuties(models, show).Item2)
+    {
+        <li>@duty</li>
+    }
 </ul>
 
 <hr style="width:100%;text-align:left;margin-left:0">
@@ -31,17 +33,22 @@
 
 <h3> Duty name:</h3> 
 <input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
-<button class="btn btn-primary" style="float:right" @onclick="@(() =>
+<button class="btn btn-primary" @onclick="@(() =>
                                           {
-                                              Logger.LogInformation(1,nameTextField);
-                                              models.Add(nameTextField);
+                                              if (!models.Contains(nameTextField))
+                                              {
+                                                  models.Add(nameTextField);
+                                              }
+
+                                              nameTextField = "";
+
                                           })">
     Add new duty
 </button>
 <table style="width:100%">
     <tr>
-        <th>Name</th>
-        <th>Command</th>
+        <th>Duty</th>
+        <th>Deleting</th>
     </tr>
     @foreach(var model in models)
     {
