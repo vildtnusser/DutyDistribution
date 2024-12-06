@@ -10,13 +10,14 @@
 <button class="btn btn-primary" @onclick="@(() =>
                                                              {
                                                                  @show = !show;
+                                                                 distributedDuties = DistributeDuties(models, persons, show);
                                                              })">Distribute</button>
 
-@for (int k = 0; k < DistributeDuties(models, persons, show).Count; k++)
+@for (int k = 0; k < distributedDuties.Count; k++)
 {
-    @foreach (var duty in DistributeDuties(models, persons, show)[k])
+    @foreach (var duty in distributedDuties[k])
     {
-        int l = DistributeDuties(models, persons, show)[k].IndexOf(duty);
+        int l = distributedDuties[k].IndexOf(duty);
         {
             if (l == 0)
             {
