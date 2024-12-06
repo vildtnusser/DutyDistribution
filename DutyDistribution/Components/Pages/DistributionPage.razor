@@ -10,7 +10,8 @@
 <button class="btn btn-primary" @onclick="@(() =>
                                                              {
                                                                  @show = !show;
-                                                                 distributedDuties = DistributeDuties(models, persons, show);
+                                                                 @distributedDuties = DistributeDuties(models, persons, show);
+                                                                 
                                                              })">Distribute</button>
 
 @for (int k = 0; k < distributedDuties.Count; k++)

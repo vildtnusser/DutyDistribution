@@ -19,7 +19,7 @@ public class DistributionPageBase : ComponentBase
         int j = persons.IndexOf(person);
         if (j == M - 1)
         {
-            var indexStart = N - amountOfDutiesForEachPerson-1;
+            var indexStart = N - amountOfDutiesForEachPerson;
             var indexEnd = N - 1;
             return new List<int>(){indexStart,indexEnd};
         }
@@ -27,7 +27,7 @@ public class DistributionPageBase : ComponentBase
         else
         { 
             var indexStart = j * amountOfDutiesForEachPerson; 
-            var indexEnd = (j + 1) * amountOfDutiesForEachPerson;
+            var indexEnd = (j + 1) * amountOfDutiesForEachPerson-1;
           return new List<int>() {indexStart,indexEnd};
 
         }
@@ -36,7 +36,8 @@ public class DistributionPageBase : ComponentBase
     public List<List<string>> DistributeDuties(List<string> duties, List<string> persons, Boolean show)
     {
         List<List<string>> dutyDistributions = new List<List<string>>();
-        List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList();
+        //List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList();
+        List<string> randomDuties = duties;
 
         foreach (var person in persons)
         {
@@ -46,7 +47,7 @@ public class DistributionPageBase : ComponentBase
             Console.WriteLine("start index:" + indexStart + " end index:" + indexEnd + " for person " + person);
             
             //TODO ensure all duties gets distributed, at the moment there is a bug such that not all duties get distributed
-            var  newList = dutyList.Concat(randomDuties[indexStart..indexEnd]);
+            var  newList = dutyList.Concat(randomDuties[indexStart..(indexEnd+1)]);
             
             dutyDistributions.Add(newList.Distinct().ToList());
         }
@@ -70,6 +71,7 @@ public class DistributionPageBase : ComponentBase
     }
 
     public List<List<string>> distributedDuties = new();
+    
     
     
     public string nameTextField = "";
