@@ -9,7 +9,7 @@ public class DistributionPageBase : ComponentBase
 {
     public Boolean show = false;
     public int currentCount = 0;
-    //List<List<string>> distributedDuties = new List<List<string>>();
+ 
 
     public List<int> getDistributionIndexes(List<string> persons, List<string> duties, string person)
     {
@@ -36,8 +36,7 @@ public class DistributionPageBase : ComponentBase
     public List<List<string>> DistributeDuties(List<string> duties, List<string> persons, Boolean show)
     {
         List<List<string>> dutyDistributions = new List<List<string>>();
-        //List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList();
-        List<string> randomDuties = duties;
+        List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList(); 
 
         foreach (var person in persons)
         {
@@ -46,7 +45,7 @@ public class DistributionPageBase : ComponentBase
             int indexEnd = getDistributionIndexes( persons, duties, person)[1];
             Console.WriteLine("start index:" + indexStart + " end index:" + indexEnd + " for person " + person);
             
-            //TODO ensure all duties gets distributed, at the moment there is a bug such that not all duties get distributed
+       
             var  newList = dutyList.Concat(randomDuties[indexStart..(indexEnd+1)]);
             
             dutyDistributions.Add(newList.Distinct().ToList());
