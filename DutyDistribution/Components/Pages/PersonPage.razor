@@ -1,0 +1,41 @@
+﻿@page "/persons"
+@inherits PersonPageBase
+@rendermode InteractiveServer
+
+
+<PageTitle>PersonPage</PageTitle>
+
+<h1>Persons</h1>
+
+<h3> Name of person:</h3>
+<input class = "input-textbox" @bind="@nameTextFieldPerson" @oninput="(e)=> { nameTextFieldPerson = e.Value ==null? string.Empty:(string)e.Value; }" />
+<button class="btn btn-primary" @onclick="@(() =>
+                                          {
+                                              if (!persons.Contains(nameTextFieldPerson))
+                                              {
+                                                  persons.Add(nameTextFieldPerson);
+                                              }
+
+                                              nameTextFieldPerson = "";
+
+                                          })">
+    Add new person
+</button>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Deleting</th>
+    </tr>
+    @foreach(var person in persons)
+    {
+        <tr>
+            <td>@person</td>
+            <td>
+                <button class="btn-primary-negative" @onclick="() => persons.Remove(person)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
