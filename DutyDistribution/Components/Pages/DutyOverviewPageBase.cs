@@ -6,9 +6,5 @@ public class DutyOverviewPageBase : ComponentBase
 {
     public string nameTextField = "";
 
-    public List<string> models = new()
-    {
-        "Cooking",
-        "Cleaning"
-    };
+    public List<string> models = new();
 }

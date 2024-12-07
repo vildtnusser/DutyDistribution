@@ -13,10 +13,6 @@ namespace DutyDistribution.Components.Pages
     {
         public string nameTextFieldPerson = "";
     
-        public List<string> persons = new()
-        {
-            "Person 1",
-            "Person 2"
-        };
+        public List<string> persons = new();
     }
 }

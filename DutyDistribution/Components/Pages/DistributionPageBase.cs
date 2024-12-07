@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-
 namespace DutyDistribution.Components.Pages;
 
 public class DistributionPageBase : ComponentBase
@@ -32,7 +31,7 @@ public class DistributionPageBase : ComponentBase
     }
     
     public List<List<string>> DistributeDuties(List<string> duties, List<string> persons, Boolean show)
-    //TODO BUG: SOMETHING GOES WRONG amount of person becomes 4 and amount of duties is > 4, probably something with index
+    //TODO BUG: SOMETHING GOES WRONG when amount of person becomes 4 and amount of duties is > 4, probably something with index
     {
         List<List<string>> dutyDistributions = new List<List<string>>();
         List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList(); 
@@ -42,7 +41,6 @@ public class DistributionPageBase : ComponentBase
             List<string> dutyList = new List<string>() { person };
             int indexStart = getDistributionIndexes( persons, duties, person)[0];
             int indexEnd = getDistributionIndexes( persons, duties, person)[1];
-            Console.WriteLine("start index:" + indexStart + " end index:" + indexEnd + " for person " + person);
             
        
             var  newList = dutyList.Concat(randomDuties[indexStart..(indexEnd+1)]);
@@ -74,17 +72,9 @@ public class DistributionPageBase : ComponentBase
     
     public string nameTextField = "";
 
-    public List<string> models = new()
-    {
-        "Cooking",
-        "Cleaning"
-    };
+    public List<string> models = new();
     
     public string nameTextFieldPerson = "";
     
-    public List<string> persons = new()
-    {
-        "Person 1",
-        "Person 2"
-    };
+    public List<string> persons = new();
 }
