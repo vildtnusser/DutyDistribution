@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using DutyDistribution.Components.Pages;
+using DutyDistribution.Components.Outdated;
 
 
 namespace DutyDistributionTest;

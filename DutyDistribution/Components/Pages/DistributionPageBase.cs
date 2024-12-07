@@ -30,8 +30,9 @@ public class DistributionPageBase : ComponentBase
 
         }
     }
-
+    
     public List<List<string>> DistributeDuties(List<string> duties, List<string> persons, Boolean show)
+    //TODO BUG: SOMETHING GOES WRONG amount of person becomes 4 and amount of duties is > 4, probably something with index
     {
         List<List<string>> dutyDistributions = new List<List<string>>();
         List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList(); 

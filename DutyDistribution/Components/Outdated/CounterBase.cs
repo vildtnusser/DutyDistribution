@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace DutyDistribution.Components.Pages;
+namespace DutyDistribution.Components.Outdated;
 
 public class CounterBase : ComponentBase
 {
