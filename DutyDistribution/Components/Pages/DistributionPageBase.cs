@@ -48,6 +48,7 @@ public class DistributionPageBase : ComponentBase
             dutyDistributions.Add(newList.Distinct().ToList());
         }
 
+        
         var dutyTuple = new List<List<string>>();
         List<string> NoDistribution = new List<string>(){"Try to click distribute button again or check if no duties exists"};
 
