@@ -54,4 +54,5 @@ public class DistributionPageBase : ComponentBase
         return dutyTuple;
     }
     public List<List<string>> distributedDuties = new();
+
 }

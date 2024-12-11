@@ -12,13 +12,14 @@ namespace DutyDistribution.Components.Pages
     {
         public string nameTextField = "";
         
+      
         public List<Person> persons = Person.getAllPersons();
         
         public void addPersonToDb(String nameTextField)
         {
             Person.addPerson(nameTextField);
         }
-
+        
         public void removePersonFromDB(Person personToBeDeleted)
         {
             Person.removePerson(personToBeDeleted.Id);

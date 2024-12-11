@@ -13,6 +13,7 @@
                                               addDutyToDb(nameTextField);
 
                                               nameTextField = "";
+                                              duties = Duty.getAllDuties();
 
                                           })">
     Add new duty
@@ -27,7 +28,9 @@
         <tr>
             <td>@duty.Name</td>
             <td>
-                <button class="btn-primary-negative" @onclick="() => removeDutyFromDB(duty)">
+                <button class="btn-primary-negative" @onclick="() => { 
+                                                         removeDutyFromDB(duty); 
+                                                         duties = Duty.getAllDuties(); }">
                     Delete
                 </button>
             </td>

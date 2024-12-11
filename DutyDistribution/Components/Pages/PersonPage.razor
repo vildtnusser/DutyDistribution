@@ -12,9 +12,9 @@
 <button class="btn btn-primary" @onclick="@(() =>
                                           {
                                               addPersonToDb(nameTextField);
-
                                               nameTextField = "";
-                                              
+                                              persons = Person.getAllPersons();
+
                                           })">
     Add new person
 </button>
@@ -28,7 +28,7 @@
         <tr>
             <td>@person.Name</td>
             <td>
-                <button class="btn-primary-negative" @onclick="() => removePersonFromDB(person)">
+                <button class="btn-primary-negative" @onclick="() => { removePersonFromDB(person); persons = Person.getAllPersons(); ; }">
                     Delete
                 </button>
             </td>
