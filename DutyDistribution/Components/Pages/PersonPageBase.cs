@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Npgsql;
+
 
 namespace DutyDistribution.Components.Pages
 
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
 
     public class PersonPageBase : ComponentBase
@@ -16,6 +13,7 @@ namespace DutyDistribution.Components.Pages
         public string nameTextField = "";
         
         public List<Person> persons = DutyDistribution.Components.Pages.Person.getAllPersons();
+        
         public void addPersonToDb(String nameTextField)
         {
             DutyDistribution.Components.Pages.Person.addPerson(nameTextField);

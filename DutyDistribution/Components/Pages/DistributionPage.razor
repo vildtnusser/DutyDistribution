@@ -6,109 +6,35 @@
 <PageTitle>DistributionPage</PageTitle>
 
 <h1> Distributed duties</h1>
-<button class="btn btn-primary" @onclick="@(() =>
-                                          {
-                                              @show = !show;
-                                              @distributedDuties = DistributeDuties(models, persons, show);
-                                                                 
-                                                                 
-                                          })">Distribute</button>
-
-
 
 @for (int k = 0; k < distributedDuties.Count; k++)
 {
     @foreach (var duty in distributedDuties[k])
     {
         int l = distributedDuties[k].IndexOf(duty);
-       
-            if (l == 0)
-            {
-                <h2>@duty</h2>
-            }
-            else
-            {
-                <ul>
-                    <li>@duty</li>
-                </ul>
-            }
-       
+
+        if (l == 0)
+        {
+            <h2>@duty</h2>
+        }
+        else
+        {
+            <ul>
+                <li>@duty</li>
+            </ul>
+        }
+
     }
+
     <hr style="width:100%;text-align:left;margin-left:0">
 }
-
-<hr style="width:100%;text-align:left;margin-left:0">
-<h1>Duty overview</h1>
-
-<h3> Duty name:</h3> 
-<input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
 <button class="btn btn-primary" @onclick="@(() =>
-                                          {
-                                              if (!models.Contains(nameTextField))
                                               {
-                                                  models.Add(nameTextField);
-                                              }
-
-                                              nameTextField = "";
-
-                                          })">
-    Add new duty
-</button>
-<table style="width:100%">
-    <tr>
-        <th>Duty</th>
-        <th>Deleting</th>
-    </tr>
-    @foreach(var model in models)
-    {
-        <tr>
-            <td>@model</td>
-            <td>
-                <button class="btn-primary-negative" @onclick="() => models.Remove(model)">
-                    Delete
-                </button>
-            </td>
-        </tr>
-    }
-
-</table>
-
-<hr style="width:100%;text-align:left;margin-left:0">
-<h1>Persons</h1>
-
-<h3> Add new person:</h3>
-<input class = "input-textbox" @bind="@nameTextFieldPerson" @oninput="(e)=> { nameTextFieldPerson = e.Value ==null? string.Empty:(string)e.Value; }" />
-<button class="btn btn-primary" @onclick="@(() =>
-                                          {
-                                              if (!persons.Contains(nameTextFieldPerson))
-                                              {
-                                                  persons.Add(nameTextFieldPerson);
-                                              }
-
-                                              nameTextFieldPerson = "";
-
-                                          })">
-    Add new person
-</button>
-<table style="width:100%">
-    <tr>
-        <th>Name</th>
-        <th>Deleting</th>
-    </tr>
-    @foreach(var person in persons)
-    {
-        <tr>
-            <td>@person</td>
-            <td>
-                <button class="btn-primary-negative" @onclick="() => persons.Remove(person)">
-                    Delete
-                </button>
-            </td>
-        </tr>
-    }
-
-</table>
-
+                                                  @show = !show;
+                                                  @distributedDuties = DistributeDuties(show);
+                                                                 
+                                                                 
+                                              })">Distribute</button>
 
 
 

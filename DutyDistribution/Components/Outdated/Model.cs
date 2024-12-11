@@ -1,4 +1,4 @@
-﻿namespace DutyDistribution.Components.Pages
+﻿namespace DutyDistribution.Components.Outdated
 {
     using System;
     using System.Collections.Generic;

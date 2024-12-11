@@ -30,17 +30,22 @@ public class DistributionPageBase : ComponentBase
         }
     }
     
-    public List<List<string>> DistributeDuties(List<string> duties, List<string> persons, Boolean show)
+    public List<List<string>> DistributeDuties(Boolean show)
     //TODO BUG: SOMETHING GOES WRONG when amount of person becomes 4 and amount of duties is > 4, probably something with index
     {
+        List<Person> persons = DutyDistribution.Components.Pages.Person.getAllPersons();
+        List<Duty> duties = DutyDistribution.Components.Pages.Duty.getAllDuties();
+        List<string> personNames = persons.Select(p => p.Name).Distinct().ToList();
+        List<string> dutyNames = duties.Select(d => d.Name).Distinct().ToList();
+        
         List<List<string>> dutyDistributions = new List<List<string>>();
-        List<string> randomDuties = duties.OrderBy(_ => Random.Shared.Next()).ToList(); 
+        List<string> randomDuties = dutyNames.OrderBy(_ => Random.Shared.Next()).ToList(); 
 
-        foreach (var person in persons)
+        foreach (var personName in personNames)
         {
-            List<string> dutyList = new List<string>() { person };
-            int indexStart = getDistributionIndexes( persons, duties, person)[0];
-            int indexEnd = getDistributionIndexes( persons, duties, person)[1];
+            List<string> dutyList = new List<string>() { personName };
+            int indexStart = getDistributionIndexes( personNames, dutyNames, personName)[0];
+            int indexEnd = getDistributionIndexes( personNames, dutyNames, personName)[1];
             
        
             var  newList = dutyList.Concat(randomDuties[indexStart..(indexEnd+1)]);
@@ -68,14 +73,4 @@ public class DistributionPageBase : ComponentBase
     }
 
     public List<List<string>> distributedDuties = new();
-    
-    
-    
-    public string nameTextField = "";
-
-    public List<string> models = new();
-    
-    public string nameTextFieldPerson = "";
-    
-    public List<string> persons = new();
 }
