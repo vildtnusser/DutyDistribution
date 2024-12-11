@@ -12,16 +12,16 @@ namespace DutyDistribution.Components.Pages
     {
         public string nameTextField = "";
         
-        public List<Person> persons = DutyDistribution.Components.Pages.Person.getAllPersons();
+        public List<Person> persons = Person.getAllPersons();
         
         public void addPersonToDb(String nameTextField)
         {
-            DutyDistribution.Components.Pages.Person.addPerson(nameTextField);
+            Person.addPerson(nameTextField);
         }
 
         public void removePersonFromDB(Person personToBeDeleted)
         {
-            DutyDistribution.Components.Pages.Person.removePerson(personToBeDeleted.Id);
+            Person.removePerson(personToBeDeleted.Id);
         }
     }
 

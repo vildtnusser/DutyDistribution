@@ -5,52 +5,34 @@ namespace DutyDistribution.Components.Pages;
 public class DistributionPageBase : ComponentBase
 {
     public Boolean show = false;
-    public int currentCount = 0;
- 
-
-    public List<int> getDistributionIndexes(List<string> persons, List<string> duties, string person)
-    {
-        int N = duties.Count;
-        int M = persons.Count;
-        int amountOfDutiesForEachPerson = Convert.ToInt32(Math.Ceiling(N / (double)M));
-        int j = persons.IndexOf(person);
-        if (j == M - 1)
-        {
-            var indexStart = N - amountOfDutiesForEachPerson;
-            var indexEnd = N - 1;
-            return new List<int>(){indexStart,indexEnd};
-        }
-
-        else
-        { 
-            var indexStart = j * amountOfDutiesForEachPerson; 
-            var indexEnd = (j + 1) * amountOfDutiesForEachPerson-1;
-          return new List<int>() {indexStart,indexEnd};
-
-        }
-    }
+    public int currentCount = 0; //TODO remove, when unit tests rewritten
     
     public List<List<string>> DistributeDuties(Boolean show)
-    //TODO BUG: SOMETHING GOES WRONG when amount of person becomes 4 and amount of duties is > 4, probably something with index
     {
-        List<Person> persons = DutyDistribution.Components.Pages.Person.getAllPersons();
-        List<Duty> duties = DutyDistribution.Components.Pages.Duty.getAllDuties();
+        List<Person> persons = Person.getAllPersons();
+        List<Duty> duties = Duty.getAllDuties();
         List<string> personNames = persons.Select(p => p.Name).Distinct().ToList();
         List<string> dutyNames = duties.Select(d => d.Name).Distinct().ToList();
         
         List<List<string>> dutyDistributions = new List<List<string>>();
         List<string> randomDuties = dutyNames.OrderBy(_ => Random.Shared.Next()).ToList(); 
-
+        
+        int M = persons.Count;
         foreach (var personName in personNames)
         {
             List<string> dutyList = new List<string>() { personName };
-            int indexStart = getDistributionIndexes( personNames, dutyNames, personName)[0];
-            int indexEnd = getDistributionIndexes( personNames, dutyNames, personName)[1];
-            
-       
-            var  newList = dutyList.Concat(randomDuties[indexStart..(indexEnd+1)]);
-            
-            dutyDistributions.Add(newList.Distinct().ToList());
+            int i = personNames.IndexOf(personName);
+            foreach (var duty in randomDuties)
+            {
+                int j = randomDuties.IndexOf(duty);
+                if ((j % M) == i)
+                {
+                    dutyList.Add(duty);
+                }
+
+
+            }
+            dutyDistributions.Add(dutyList.Distinct().ToList());
         }
 
         
@@ -71,6 +53,5 @@ public class DistributionPageBase : ComponentBase
 
         return dutyTuple;
     }
-
     public List<List<string>> distributedDuties = new();
 }

@@ -15,7 +15,7 @@ public class DistributionPageBaseTest
     }
 
     [Test]
-    public void currentCountInitsTo0Test()
+    public void currentCountInitsTo0Test() //TODO remove when other unit tests is written
     {
         Assert.That(distributionPageBase.currentCount, Is.EqualTo(0));
     }

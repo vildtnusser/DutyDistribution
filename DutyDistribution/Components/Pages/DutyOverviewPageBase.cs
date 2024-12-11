@@ -12,15 +12,15 @@ namespace DutyDistribution.Components.Pages
     {
         public string nameTextField = "";
         
-        public List<Duty> duties = DutyDistribution.Components.Pages.Duty.getAllDuties();
+        public List<Duty> duties = Duty.getAllDuties();
         public void addDutyToDb(String nameTextField)
         {
-            DutyDistribution.Components.Pages.Duty.addDuty(nameTextField);
+            Duty.addDuty(nameTextField);
         }
 
         public void removeDutyFromDB(Duty dutyToBeDeleted)
         {
-            DutyDistribution.Components.Pages.Duty.removeDuty(dutyToBeDeleted.Id);
+            Duty.removeDuty(dutyToBeDeleted.Id);
         }
     }
 
