@@ -1,13 +1,10 @@
-﻿using System.Data;
-
-namespace DutyDistribution.Components.Pages
+﻿namespace DutyDistribution.Components.Pages
 {
-    using System;
+
     using System.Collections.Generic;
     using Npgsql;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+ 
 
 
     public class Person
@@ -15,9 +12,9 @@ namespace DutyDistribution.Components.Pages
         public string Name { get; set; }
         public int Id { get; set; }
 
-        public static List<Person> getAllPersons()
+        public static List<Person> GetAllPersons()
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
+            var connection = Shared.DataBase.getConnection();
 
             using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM public.person", connection);
 
@@ -33,10 +30,10 @@ namespace DutyDistribution.Components.Pages
             return result;
         }
 
-        public static int addPerson(string nameTextField)
+        public static int AddPerson(string nameTextField)
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
-            List<Person> persons = getAllPersons();
+            var connection = Shared.DataBase.getConnection();
+            List<Person> persons = GetAllPersons();
             var newPerson = new Person() { Name = nameTextField };
             
             IEnumerable<Person> nameMatch = from person in persons
@@ -57,10 +54,10 @@ namespace DutyDistribution.Components.Pages
 
         }
 
-        public static int removePerson(int idToBeDeleted)
+        public static int RemovePerson(int idToBeDeleted)
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
-            List<Person> persons = getAllPersons();
+            var connection = Shared.DataBase.getConnection();
+            List<Person> persons = GetAllPersons();
             int rowsAffected = -1;
             foreach (Person person in persons)
             { 

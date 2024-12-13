@@ -9,7 +9,7 @@ public class DistributionPageBase : ComponentBase
     
     public List<List<string>> DistributeDuties(Boolean show)
     {
-        List<Person> persons = Person.getAllPersons();
+        List<Person> persons = Person.GetAllPersons();
         List<Duty> duties = Duty.getAllDuties();
         List<string> personNames = persons.Select(p => p.Name).Distinct().ToList();
         List<string> dutyNames = duties.Select(d => d.Name).Distinct().ToList();
@@ -35,23 +35,8 @@ public class DistributionPageBase : ComponentBase
             dutyDistributions.Add(dutyList.Distinct().ToList());
         }
 
-        
-        var dutyTuple = new List<List<string>>();
-        List<string> NoDistribution = new List<string>(){"Try to click distribute button again or check if no duties exists"};
-
-        foreach (var dutyList in dutyDistributions)
-        {
-            if (show)
-            {
-                dutyTuple.Add(dutyList.Distinct().ToList());
-            }
-            else
-            {
-                dutyTuple.Add(NoDistribution.Distinct().ToList());
-            }
-        }
-
-        return dutyTuple;
+ 
+        return dutyDistributions;
     }
     public List<List<string>> distributedDuties = new();
 

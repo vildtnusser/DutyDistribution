@@ -13,7 +13,7 @@
                                           {
                                               addPersonToDb(nameTextField);
                                               nameTextField = "";
-                                              persons = Person.getAllPersons();
+                                              persons = Person.GetAllPersons();
 
                                           })">
     Add new person
@@ -28,7 +28,7 @@
         <tr>
             <td>@person.Name</td>
             <td>
-                <button class="btn-primary-negative" @onclick="() => { removePersonFromDB(person); persons = Person.getAllPersons(); ; }">
+                <button class="btn-primary-negative" @onclick="() => { removePersonFromDB(person); persons = Person.GetAllPersons(); ; }">
                     Delete
                 </button>
             </td>
