@@ -4,13 +4,12 @@ namespace DutyDistribution.Components.Pages;
 
 public class DistributionPageBase : ComponentBase
 {
-    public Boolean show = false;
     public int currentCount = 0; //TODO remove, when unit tests rewritten
     
-    public List<List<string>> DistributeDuties(Boolean show)
+    public List<List<string>> DistributeDuties()
     {
         List<Person> persons = Person.GetAllPersons();
-        List<Duty> duties = Duty.getAllDuties();
+        List<Duty> duties = Duty.GetAllDuties();
         List<string> personNames = persons.Select(p => p.Name).Distinct().ToList();
         List<string> dutyNames = duties.Select(d => d.Name).Distinct().ToList();
         

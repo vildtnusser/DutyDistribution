@@ -14,7 +14,7 @@
 
         public static List<Person> GetAllPersons()
         {
-            var connection = Shared.DataBase.getConnection();
+            var connection = Shared.DataBase.GetConnection();
 
             using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM public.person", connection);
 
@@ -32,7 +32,7 @@
 
         public static int AddPerson(string nameTextField)
         {
-            var connection = Shared.DataBase.getConnection();
+            var connection = Shared.DataBase.GetConnection();
             List<Person> persons = GetAllPersons();
             var newPerson = new Person() { Name = nameTextField };
             
@@ -56,7 +56,7 @@
 
         public static int RemovePerson(int idToBeDeleted)
         {
-            var connection = Shared.DataBase.getConnection();
+            var connection = Shared.DataBase.GetConnection();
             List<Person> persons = GetAllPersons();
             int rowsAffected = -1;
             foreach (Person person in persons)

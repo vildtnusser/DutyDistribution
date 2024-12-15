@@ -10,10 +10,10 @@
 <input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
 <button class="btn btn-primary" @onclick="@(() =>
                                           {
-                                              addDutyToDb(nameTextField);
+                                              addDutyToDB(nameTextField);
 
                                               nameTextField = "";
-                                              duties = Duty.getAllDuties();
+                                              duties = Duty.GetAllDuties();
 
                                           })">
     Add new duty
@@ -30,7 +30,7 @@
             <td>
                 <button class="btn-primary-negative" @onclick="() => { 
                                                          removeDutyFromDB(duty); 
-                                                         duties = Duty.getAllDuties(); }">
+                                                         duties = Duty.GetAllDuties(); }">
                     Delete
                 </button>
             </td>

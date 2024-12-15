@@ -11,13 +11,15 @@ namespace DutyDistribution.Components.Pages
 
     public class PersonPageBase: ComponentBase
     {
-        [Parameter] public Person Person { get; set; }
         public string nameTextField = "";
+        public List<Person> persons = new();
 
+        public PersonPageBase()
+        {
+            persons = Person.GetAllPersons();
+        }
 
-        public List<Person> persons = Person.GetAllPersons();
-        
-        public void addPersonToDb(String nameTextField)
+        public void addPersonToDB(String nameTextField)
         {
             Person.AddPerson(nameTextField);
         }

@@ -14,9 +14,9 @@ namespace DutyDistribution.Components.Pages
         public string Name { get; set; }
         public int Id { get; set; }
 
-        public static List<Duty> getAllDuties()
+        public static List<Duty> GetAllDuties()
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
+            var connection = Shared.DataBase.GetConnection();
 
             using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM public.duty", connection);
 
@@ -32,10 +32,10 @@ namespace DutyDistribution.Components.Pages
             return result;
         }
 
-        public static int addDuty(string nameTextField)
+        public static int AddDuty(string nameTextField)
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
-            List<Duty> duties = getAllDuties();
+            var connection = Shared.DataBase.GetConnection();
+            List<Duty> duties = GetAllDuties();
             var newDuty = new Duty() { Name = nameTextField };
             
             IEnumerable<Duty> nameMatch = from duty in duties
@@ -56,10 +56,10 @@ namespace DutyDistribution.Components.Pages
 
         }
 
-        public static int removeDuty(int idToBeDeleted)
+        public static int RemoveDuty(int idToBeDeleted)
         {
-            var connection = DutyDistribution.Components.Shared.DataBase.getConnection();
-            List<Duty> duties = getAllDuties();
+            var connection = Shared.DataBase.GetConnection();
+            List<Duty> duties = GetAllDuties();
             int rowsAffected = -1;
             foreach (Duty duty in duties)
             { 

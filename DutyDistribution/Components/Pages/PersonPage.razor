@@ -11,7 +11,7 @@
 <input class = "input-textbox" @bind="@nameTextField" @oninput="(e)=> { nameTextField = e.Value ==null? string.Empty:(string)e.Value; }" />
 <button class="btn btn-primary" @onclick="@(() =>
                                           {
-                                              addPersonToDb(nameTextField);
+                                              addPersonToDB(nameTextField);
                                               nameTextField = "";
                                               persons = Person.GetAllPersons();
 
