@@ -31,8 +31,9 @@ namespace DutyDistributionTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                //TODO Flush DB
                 DataBase.OpenConnection();
+                Utils.ClearDB();
+                
                 var newDutyName = "Duty Test";
                 Assert.That(DutyExists(newDutyName), Is.False);
 
@@ -47,8 +48,9 @@ namespace DutyDistributionTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                //TODO Flush DB
                 DataBase.OpenConnection();
+                Utils.ClearDB();
+                
                 string testDutyName = "Duty Test";
                 _dutyOverviewPageBase.addDutyToDB(testDutyName);
                 List<Duty> allDuties = Duty.GetAllDuties();

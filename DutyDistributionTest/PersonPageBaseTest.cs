@@ -31,8 +31,9 @@ namespace DutyDistributionTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                //TODO Flush DB
                 DataBase.OpenConnection();
+                Utils.ClearDB();
+                
                 var newPersonName = "Person Test";
                 Assert.That(PersonExists(newPersonName), Is.False);
 
@@ -47,8 +48,10 @@ namespace DutyDistributionTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                //TODO Flush DB
+                
                 DataBase.OpenConnection();
+                Utils.ClearDB();
+                
                 string testPersonName = "Person Test";
                 _personPageBase.addPersonToDB(testPersonName);
                 List<Person> allPersons = Person.GetAllPersons();

@@ -54,24 +54,22 @@
 
         }
 
-        public static int RemovePerson(int idToBeDeleted)
+        public static int DeletePerson(int idToBeDeleted)
         {
             var connection = Shared.DataBase.GetConnection();
-            List<Person> persons = GetAllPersons();
-            int rowsAffected = -1;
-            foreach (Person person in persons)
-            { 
-                if (person.Id == idToBeDeleted)
-                {
-                    using NpgsqlCommand cmd = new NpgsqlCommand($"DELETE FROM public.person WHERE id = {idToBeDeleted}", connection);
+          
+            using NpgsqlCommand cmd = new NpgsqlCommand($"DELETE FROM public.person WHERE id = {idToBeDeleted}", connection);
 
-                    rowsAffected = cmd.ExecuteNonQuery();
-                }
-            }
+            return cmd.ExecuteNonQuery();
+        }
 
-            return rowsAffected;
+        public static int DeleteAllPersons()
+        {
+            var connection = Shared.DataBase.GetConnection();
+          
+            using NpgsqlCommand cmd = new NpgsqlCommand("DELETE FROM public.person", connection);
 
-
+            return cmd.ExecuteNonQuery();
         }
     }
 }

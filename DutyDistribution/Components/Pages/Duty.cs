@@ -58,22 +58,18 @@ namespace DutyDistribution.Components.Pages
 
         public static int RemoveDuty(int idToBeDeleted)
         {
+            var connection = Shared.DataBase.GetConnection(); 
+            using NpgsqlCommand cmd = new NpgsqlCommand($"DELETE FROM public.duty WHERE id = {idToBeDeleted}", connection);
+            return cmd.ExecuteNonQuery();
+        }
+        
+        public static int DeleteAllDuties()
+        {
             var connection = Shared.DataBase.GetConnection();
-            List<Duty> duties = GetAllDuties();
-            int rowsAffected = -1;
-            foreach (Duty duty in duties)
-            { 
-                if (duty.Id == idToBeDeleted)
-                {
-                    using NpgsqlCommand cmd = new NpgsqlCommand($"DELETE FROM public.duty WHERE id = {idToBeDeleted}", connection);
+          
+            using NpgsqlCommand cmd = new NpgsqlCommand("DELETE FROM public.duty", connection);
 
-                    rowsAffected = cmd.ExecuteNonQuery();
-                }
-            }
-
-            return rowsAffected;
-
-
+            return cmd.ExecuteNonQuery();
         }
     }
 }

@@ -4,8 +4,7 @@ namespace DutyDistribution.Components.Pages;
 
 public class DistributionPageBase : ComponentBase
 {
-    public int currentCount = 0; //TODO remove, when unit tests rewritten
-    
+    public List<List<string>> distributedDuties = new();
     public List<List<string>> DistributeDuties()
     {
         List<Person> persons = Person.GetAllPersons();
@@ -37,6 +36,4 @@ public class DistributionPageBase : ComponentBase
  
         return dutyDistributions;
     }
-    public List<List<string>> distributedDuties = new();
-
 }

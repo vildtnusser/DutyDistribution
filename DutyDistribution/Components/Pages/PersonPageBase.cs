@@ -26,7 +26,7 @@ namespace DutyDistribution.Components.Pages
         
         public void removePersonFromDB(Person personToBeDeleted)
         {
-            Person.RemovePerson(personToBeDeleted.Id);
+            Person.DeletePerson(personToBeDeleted.Id);
         }
     }
 
